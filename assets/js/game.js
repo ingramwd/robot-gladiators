@@ -11,23 +11,23 @@ var playerMoney = 10;
 
 console.log(playerName, playerAttack, playerHealth);
 
-var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
-console.log(enemyNames.length);
-for(var i = 0; i < enemyNames.length; i++) {
-    console.log(enemyNames[i]);
+var pickedEnemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
+console.log(pickedEnemyNames.length);
+for(var i = 0; i < pickedEnemyNames.length; i++) {
+    console.log(pickedEnemyNames[i]);
     console.log(i);
-    console.log(enemyNames[i] + " is at " + i + " index");
+    console.log(pickedEnemyNames[i] + " is at " + i + " index");
 }
 var enemyHealth = 50;
 var enemyAttack = 12;
 
-console.log(enemyNames, enemyAttack, enemyHealth)
+console.log(pickedEnemyNames, enemyAttack, enemyHealth)
 
 // sets up function
-var fight = function(enemyName) {
-    window.alert("Welcome to Robot Gladiators!");
-
-var promptFight = window.prompt("would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+var fight = function(pickedEnemyNames) {
+    // this will repeat as long as an emeny is alive
+    while(enemyHealth > 0) {
+        var promptFight = window.prompt("would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
 // if a player fights
 if (promptFight === "fight" || promptFight === "FIGHT") { 
@@ -36,24 +36,24 @@ if (promptFight === "fight" || promptFight === "FIGHT") {
  enemyHealth = enemyHealth - playerAttack;
     
  console.log(
-   playerName + " attacked " + enemyNames + ". " + enemyNames + " now has " + enemyHealth + " health remaining. "
+   playerName + " attacked " + pickedEnemyNames + ". " + pickedEnemyNames + " now has " + enemyHealth + " health remaining. "
  );
 
  //   checking enemy health 
 
  if (enemyHealth <= 0) {
-     window.alert(enemyNames + " has died!");
+     window.alert(pickedEnemyNames + " has died!");
  }
 
  else {
-     window.alert(enemyNames + " still has " + enemyHealth + " health left.");
+     window.alert(pickedEnemyNames + " still has " + enemyHealth + " health left.");
  }
 
  // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
    playerHealth = playerHealth - enemyAttack
  // Log a resulting message to the console so we know that it worked.
    console.log (
-       enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+       pickedEnemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
    );
 
    if (playerHealth <= 0) {
@@ -87,7 +87,10 @@ if (promptFight === "fight" || promptFight === "FIGHT") {
     }
 }
 
+    }
+
 // executes the function
-for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
+for(var i = 0; i < pickedEnemyNames.length; i++) {
+    enemyHealth =50;
+    fight(pickedEnemyNames[i]);
 }
