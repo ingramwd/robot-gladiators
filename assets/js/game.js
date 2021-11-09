@@ -14,6 +14,9 @@ console.log(playerName, playerAttack, playerHealth);
 var pickedEnemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 console.log(pickedEnemyNames.length);
 for(var i = 0; i < pickedEnemyNames.length; i++) {
+    if (playerHealth > 0) {
+        window.alert("Welcome to Robot Gladiators! Round" + ( i + 1) );
+    }
     console.log(pickedEnemyNames[i]);
     console.log(i);
     console.log(pickedEnemyNames[i] + " is at " + i + " index");
@@ -72,9 +75,11 @@ var fight = function(enemyName) {
       // check player's health
       if (playerHealth <= 0) {
         window.alert(playerName + ' has died!');
-        // leave while() loop if player is dead
+        window.alert("you have lost your robot in battle! game Over!");
         break;
-      } else {
+    
+    }
+       else {
         window.alert(playerName + ' still has ' + playerHealth + ' health left.');
       }
     }
