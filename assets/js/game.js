@@ -4,7 +4,7 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble'];
-var enemyHealth = 50;
+var enemyHealth = randomNumber(40, 60);
 var enemyAttack = 12;
 
 // fight function (now with parameter for enemy's name)
@@ -29,7 +29,9 @@ var fight = function (enemyName) {
     }
 
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = Math.max(0, enemyHealth - playerAttack);
+    var damage = randomNumber(playerAttack - 3, playerAttack);
+
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -111,8 +113,8 @@ endGame();
 };
 
 // RNG for Numeric Value
-var randomNumber = function () {
-  var value = Math.floor(Math.random() * 21) + 40;
+var randomNumber = function (min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1));
 
   return value;
 };
