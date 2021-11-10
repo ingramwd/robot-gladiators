@@ -23,13 +23,13 @@ var fight = function (enemyName) {
         window.alert(playerName + ' has decided to skip this fight. Goodbye!');
         // subtract money from playerMoney for skipping
         playerMoney = playerMoney - 10;
-        console.log("playerMoney", playerMoney)
+        console.log("playerMoney", playerMoney);
         break;
       }
     }
 
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = enemyHealth - playerAttack;
+    enemyHealth = Math.max(0, enemyHealth - playerAttack);
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -39,7 +39,7 @@ var fight = function (enemyName) {
       window.alert(enemyName + ' has died!');
 
       // award player money for winning
-      playerMoney = playerMoney + 20;
+      playerMoney = Math.max(0, playerMoney - 10);
 
       // leave while() loop since enemy is dead
       break;
@@ -48,7 +48,7 @@ var fight = function (enemyName) {
     }
 
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = playerHealth - enemyAttack;
+    playerHealth = Math.max(0, playerHealth - enemyAttack);
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -82,31 +82,39 @@ var startGame = function () {
       var pickedEnemyName = enemyNames[i];
 
       // reset enemyHealth before starting new fight
-      enemyHealth = 50;
+      enemyHealth = randomNumber();
 
-      // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
-      fight(pickedEnemyName);
+    }
+    // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
+    fight(pickedEnemyName);
 
-      // if player is still alive and we're not at the last enemy in the array
-      if (playerHealth > 0 && i < enemyNames.length - 1) {
-        // ask if player wants to use the store before next round
-        var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
+    // if player is still alive and we're not at the last enemy in the array
+    if (playerHealth > 0 && i < enemyNames.length - 1) {
+      // ask if player wants to use the store before next round
+      var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
 
-        // if yes, take them to the store() function
-        if (storeConfirm) {
-          shop();
-        }
+      // if yes, take them to the store() function
+      if (storeConfirm) {
+        shop();
       }
     }
+  }
     // if player is not alive, break out of the loop and let endGame function run
     else {
-      window.alert("You have lost your robot in battle! Game Over!");
-      break;
-    }
-  }
+  window.alert("You have lost your robot in battle! Game Over!");
+  break;
+}
+  };
 
-  // after loop ends, we are either out of playerHealth or enemies to fight, so run the endGame function
-  endGame();
+// after loop ends, we are either out of playerHealth or enemies to fight, so run the endGame function
+endGame();
+};
+
+// RNG for Numeric Value
+var randomNumber = function () {
+  var value = Math.floor(Math.random() * 21) + 40;
+
+  return value;
 };
 
 // function to end the entire game
