@@ -96,6 +96,10 @@ var startGame = function () {
       enemyHealth = 50;
 
       fight(pickedEnemyName);
+      if (playerHealth <= 0) { //then if player is out of health, we break out of for-loop.
+        endGame()
+        break;
+      }
     }
     else {
       window.alert("You have lost your robot in battle! Game Over!");
@@ -103,7 +107,6 @@ var startGame = function () {
       endGame();
     }
   }
-
 };
 
 var endGame = function () {
@@ -125,5 +128,10 @@ var endGame = function () {
     window.alert('Thank you for playing Robot Gladiators! Come back soon!');
   }
 };
+
+var shop = function () {
+  console.log("Entered the shop");
+};
+
 
 startGame();
