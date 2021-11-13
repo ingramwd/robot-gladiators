@@ -49,11 +49,11 @@ var playerInfo = {
 
 var enemyInfo = [
     {
-        name: "Roborto",
+        name: "Starscream",
         attack: randomNumber(10, 14)
     },
     {
-        name: "Amy Android",
+        name: "Soundwave",
         attack: randomNumber(10, 14)
     },
     {
