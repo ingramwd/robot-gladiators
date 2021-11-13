@@ -3,9 +3,19 @@ var randomNumber = function (min, max) {
 
     return value;
 };
+var getPlayerName = function () {
+    var name = "";
+
+    while (name === "" || name === null) {
+        name = prompt("What is your robot's name?");
+    }
+
+    console.log("Your robot's name is " + name);
+    return name;
+};
 
 var playerInfo = {
-    name: window.prompt("What i your robot' name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -16,7 +26,7 @@ var playerInfo = {
     },
     refillHealth: function () {
         if (this.money >= 7) {
-            window.alert("Refilling player's health by 20 for 7 dollars.")
+            window.alert("Refilling player's health by 20 for 7 dollars.");
             this.health += 20;
             this.money -= 7;
         }
@@ -74,7 +84,7 @@ var fight = function (enemy) {
                 console.log("playerInfo.money", playerInfo.money);
                 break;
             }
-        };
+        }
 
         // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
@@ -104,9 +114,6 @@ var fight = function (enemy) {
 
         playerInfo.health = Math.max(0, playerInfo.health - damage);
 
-        console.log(
-            enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
-        );
 
         // check player's health
         if (playerInfo.health <= 0) {
@@ -203,9 +210,10 @@ var shop = function () {
         case 'refill':
             if (playerInfo.money >= 7) {
                 window.alert("Refilling player's health by 20 for 7 dollars.");
-                pllayer.Info.refillHealth();
+                player.Info.refillHealth();
                 break;
             }
+
         case 'UPGRADE':
         case 'upgrade':
             playerInfo.upgradeAttack();
